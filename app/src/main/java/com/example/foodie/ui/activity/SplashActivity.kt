@@ -1,11 +1,10 @@
-package com.example.foodie.ui
+package com.example.foodie.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.example.foodie.R
-import com.example.foodie.ui.signInUp.SignInUpActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

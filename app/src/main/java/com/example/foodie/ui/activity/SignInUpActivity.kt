@@ -1,10 +1,11 @@
-package com.example.foodie.ui.signInUp
+package com.example.foodie.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.foodie.R
+import com.example.foodie.ui.signInUp.SignInOutViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -19,7 +20,7 @@ class SignInUpActivity : AppCompatActivity() {
 
         tabLayout = findViewById (R.id.sign_tab_layout)
         viewPager = findViewById (R.id.sign_view_pager)
-        viewPager.adapter = ViewPagerAdapter(this as FragmentActivity) {
+        viewPager.adapter = SignInOutViewPagerAdapter(this as FragmentActivity) {
             viewPager.currentItem = 0
         }
 

@@ -1,4 +1,4 @@
-package com.example.foodie.ui
+package com.example.foodie.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,12 +7,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.foodie.R
 import com.example.foodie.databinding.ActivityRootBinding
+import com.google.android.material.tabs.TabLayout
 
 class RootActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRootBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,9 @@ class RootActivity : AppCompatActivity() {
         )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+
     }
 
 
