@@ -1,19 +1,26 @@
 package com.example.foodie.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.foodie.model.MenuModel
-import com.example.foodie.model.UserModel
 
 @Dao
 interface FoodDao {
-//todo проверить
     @Query("SELECT * FROM food where typesOfFood in ('1')")
-    fun getMenu(): List<MenuModel>
+    fun getMealsMenu(): List<MenuModel>
 
-//    @Query("SELECT * FROM food where typesOfFood in ('1')")
+    @Query("SELECT * FROM food where typesOfFood in ('2')")
+    fun getSidesMenu(): List<MenuModel>
+
+    @Query("SELECT * FROM food where typesOfFood in ('3')")
+    fun getSnacksMenu(): List<MenuModel>
+
+    @Query("SELECT * FROM food where id = :id")
+    fun getMenu(id: Int): MenuModel
+
+    @Query("SELECT * FROM food")
+    fun getAllMenu(): List<MenuModel>
 
     @Insert
     fun insertMenu(var1: MenuModel)

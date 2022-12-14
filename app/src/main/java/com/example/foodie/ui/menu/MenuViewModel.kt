@@ -18,15 +18,16 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
     val allMenu: LiveData<List<MenuModel>> = _allMenu
     init {
         viewModelScope.launch {
-            var tmp = db.menuDao().getMenu()
+            var tmp = db.menuDao().getMealsMenu()
             if (tmp.isEmpty()) {
-                db.menuDao().insertMenu(MenuModel("meat", "60 somon", false, R.drawable.food_image, "1"))
-                db.menuDao().insertMenu(MenuModel("first", "20 somon", false, R.drawable.food_image, "1"))
-                db.menuDao().insertMenu(MenuModel("second", "40 somon", false, R.drawable.food_image, "1"))
-                db.menuDao().insertMenu(MenuModel("disert", "55 somon", false, R.drawable.food_image, ""))
-                db.menuDao().insertMenu(MenuModel("fish", "30 somon", false, R.drawable.food_image, ""))
-                db.menuDao().insertMenu(MenuModel("ice cream", "22 somon", false, R.drawable.food_image, ""))
-                tmp = db.menuDao().getMenu()
+                db.menuDao().insertMenu(MenuModel("meat", 60, false, R.drawable.food_image, "1", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                db.menuDao().insertMenu(MenuModel("first", 20, false, R.drawable.food_image, "1", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                db.menuDao().insertMenu(MenuModel("second", 40, false, R.drawable.food_image, "1", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                db.menuDao().insertMenu(MenuModel("disert", 55, false, R.drawable.food_image, "2", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                db.menuDao().insertMenu(MenuModel("fish", 33, false, R.drawable.food_image, "2", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                db.menuDao().insertMenu(MenuModel("ice cream", 22, false, R.drawable.food_image, "3", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                db.menuDao().insertMenu(MenuModel("some food", 56, false, R.drawable.food_image, "3", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
+                tmp = db.menuDao().getMealsMenu()
             }
             _allMenu.postValue(tmp)
         }

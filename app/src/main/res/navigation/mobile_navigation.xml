@@ -21,12 +21,25 @@
         android:id="@+id/navigation_menu"
         android:name="com.example.foodie.ui.menu.ViewPagerAndTabLayoutFragment"
         android:label="@string/title_menu"
-        tools:layout="@layout/fragment_view_pager_and_tab_layout"/>
+        tools:layout="@layout/fragment_view_pager_and_tab_layout">
+        <action
+            android:id="@+id/action_navigation_menu_to_foodInfoFragment"
+            app:destination="@id/foodInfoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="com.example.foodie.ui.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/foodInfoFragment"
+        android:name="com.example.foodie.ui.foodInfo.FoodInfoFragment"
+        android:label="fragment_food_info"
+        tools:layout="@layout/fragment_food_info" >
+        <argument
+            android:name="idFood"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

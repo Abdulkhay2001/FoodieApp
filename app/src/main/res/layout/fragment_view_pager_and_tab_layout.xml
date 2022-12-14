@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.menu.ViewPagerAndTabLayoutFragment">
+    <include
+        android:id="@+id/ic_toolbar"
+        layout="@layout/tool_bar"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/menu_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_toolbar"
+        app:tabIndicatorColor="#D73434"
+        app:tabTextColor="#D73434"
+        />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/menu_view_pager"
@@ -16,15 +30,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/menu_tab_layout" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/menu_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="#D73434"
-        app:tabTextColor="#D73434"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

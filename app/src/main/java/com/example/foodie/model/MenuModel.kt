@@ -9,13 +9,15 @@ class MenuModel(
     @ColumnInfo
     val name: String,
     @ColumnInfo
-    val price: String,
+    val price: Int,
     @ColumnInfo
     val favorite: Boolean,
     @ColumnInfo
     val image: Int,
     @ColumnInfo
-    val typesOfFood: String
+    val typesOfFood: String,
+    @ColumnInfo
+    val desc: String
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
