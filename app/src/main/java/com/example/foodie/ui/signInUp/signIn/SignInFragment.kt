@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.example.foodie.R
 import com.example.foodie.databinding.FragmentSignInBinding
 import com.example.foodie.ui.activity.RootActivity

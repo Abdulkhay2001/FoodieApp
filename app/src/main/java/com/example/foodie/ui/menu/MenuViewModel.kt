@@ -16,6 +16,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _allMenu: MutableLiveData<List<MenuModel>> = MutableLiveData()
     val allMenu: LiveData<List<MenuModel>> = _allMenu
+
     init {
         viewModelScope.launch {
             var tmp = db.menuDao().getMealsMenu()
@@ -29,11 +30,21 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 db.menuDao().insertMenu(MenuModel("some food", 56, false, R.drawable.food_image, "3", "Some description, Some description, Some description, Some description, Some description, Some description, Some description"))
                 tmp = db.menuDao().getMealsMenu()
             }
-            _allMenu.postValue(tmp)
+            _allMenu.postValue(db.menuDao().getMealsMenu())
         }
     }
 
-
-
-
+    fun initArgs(category: Int) {
+        when(category) {
+            1 -> {
+                _allMenu.postValue(db.menuDao().getMealsMenu())
+            }
+            2 -> {
+                _allMenu.postValue(db.menuDao().getSidesMenu())
+            }
+            3-> {
+                _allMenu.postValue(db.menuDao().getSnacksMenu())
+            }
+        }
+    }
 }

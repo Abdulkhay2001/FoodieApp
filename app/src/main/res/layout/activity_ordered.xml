@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFE4E4"
+    tools:context=".ui.activity.OrderedActivity">
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="15dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="570dp"
+        android:layout_height="710dp"
+        android:background="@color/white"
+        android:rotation="-9"
+        app:cardCornerRadius="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ordered_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ordered"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="1dp"
+        android:layout_marginTop="130dp"
+        />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank you"
+        android:textSize="58sp"
+        android:textColor="#FF4040"
+        android:fontFamily="@font/unkempt_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ordered_img"
+        android:translationZ="1dp"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:fontFamily="@font/unkempt_regular"
+        android:text="your food will be "
+        android:translationZ="1dp"/>
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv2"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:fontFamily="@font/unkempt_regular"
+        android:text="delivered to your"
+        android:translationZ="1dp"/>
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv3"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:fontFamily="@font/unkempt_regular"
+        android:text="doorstep soon."
+        android:translationZ="1dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:backgroundTint="#FF1D1D"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        app:cornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv4"
+        android:layout_marginTop="55dp"
+        android:text="Got it"
+        android:textAllCaps="false"
+        android:textSize="24sp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

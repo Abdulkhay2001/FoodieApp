@@ -1,4 +1,4 @@
-package com.example.foodie.ui.foodInfo
+package com.example.foodie.ui.menu.foodInfo
 
 import android.view.LayoutInflater
 import android.view.View

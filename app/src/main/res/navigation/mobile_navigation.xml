@@ -34,7 +34,7 @@
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/foodInfoFragment"
-        android:name="com.example.foodie.ui.foodInfo.FoodInfoFragment"
+        android:name="com.example.foodie.ui.menu.foodInfo.FoodInfoFragment"
         android:label="fragment_food_info"
         tools:layout="@layout/fragment_food_info" >
         <argument

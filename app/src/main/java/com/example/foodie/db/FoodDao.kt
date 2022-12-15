@@ -16,6 +16,10 @@ interface FoodDao {
     @Query("SELECT * FROM food where typesOfFood in ('3')")
     fun getSnacksMenu(): List<MenuModel>
 
+
+
+
+
     @Query("SELECT * FROM food where id = :id")
     fun getMenu(id: Int): MenuModel
 
