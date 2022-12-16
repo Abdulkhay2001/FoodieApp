@@ -14,8 +14,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.foodie.R
 import com.example.foodie.databinding.FragmentFoodInfoBinding
+import com.example.foodie.model.MenuModel
+import com.example.foodie.model.callback.RecyclerViewItemClick
 import com.example.foodie.ui.activity.OrderedActivity
 import com.example.foodie.ui.activity.RootActivity
+import com.example.foodie.ui.menu.MenuFragment
 
 class FoodInfoFragment : Fragment() {
 
@@ -24,6 +27,18 @@ class FoodInfoFragment : Fragment() {
     private val args: FoodInfoFragmentArgs by navArgs()
 
     lateinit var model: FoodInfoViewModel
+
+    private val callback = object : RecyclerViewItemClick{
+        override fun onItemClickCallback(item: Any) {
+            if (item is MenuModel){
+                findNavController().navigate(
+                    R.id.foodInfoFragment,
+                    FoodInfoFragmentArgs(item.id).toBundle()
+                )
+            }
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +60,11 @@ class FoodInfoFragment : Fragment() {
             DividerItemDecoration.HORIZONTAL
         )
 
+
         model.allMenu.observe(viewLifecycleOwner, Observer { menu ->
-
-            binding.rvInfoRecommended.adapter = FoodInfoAdapter(menu)
-
+            binding.rvInfoRecommended.adapter = FoodInfoAdapter(menu, callback)
         })
+
 
         binding.tvPlus.setOnClickListener {
             var inc = binding.tvCount.text.toString().toInt()
