@@ -33,6 +33,14 @@ class MenuFragment : Fragment() {
                 )
             }
         }
+
+        override fun onFavoriteClick(item: Any) {
+            if (item is MenuModel) {
+                item.favorite = item.favorite.not()
+                model.update(item, category ?: 1)
+
+            }
+        }
     }
 
     companion object {
@@ -59,6 +67,7 @@ class MenuFragment : Fragment() {
         binding.rvMenu.layoutManager = GridLayoutManager(requireContext(), 2)
 
         model = ViewModelProvider(this)[MenuViewModel::class.java]
+
         // if (category != null) category!! else 1
         model.initArgs(category ?: 1)
 

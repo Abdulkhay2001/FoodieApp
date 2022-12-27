@@ -3,6 +3,7 @@ package com.example.foodie.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.foodie.model.MenuModel
 
 @Dao
@@ -16,8 +17,11 @@ interface FoodDao {
     @Query("SELECT * FROM food where typesOfFood in ('3')")
     fun getSnacksMenu(): List<MenuModel>
 
+    @Query("SELECT * FROM FOOD WHERE favorite = 1")
+    fun getFavorites(): List<MenuModel>
 
-
+    @Update
+    fun update(f: MenuModel)
 
 
     @Query("SELECT * FROM food where id = :id")

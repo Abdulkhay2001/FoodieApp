@@ -38,6 +38,10 @@ class FoodInfoFragment : Fragment() {
             }
         }
 
+        override fun onFavoriteClick(item: Any) {
+            TODO("Not yet implemented")
+        }
+
     }
 
     override fun onCreateView(

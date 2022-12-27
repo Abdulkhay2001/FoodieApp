@@ -11,7 +11,7 @@ class MenuModel(
     @ColumnInfo
     val price: Int,
     @ColumnInfo
-    val favorite: Boolean,
+    var favorite: Boolean,
     @ColumnInfo
     val image: Int,
     @ColumnInfo

@@ -60,4 +60,12 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun update(menuModel: MenuModel, category: Int){
+
+        db.menuDao().update(menuModel)
+        initArgs(category)
+
+    }
+
 }
