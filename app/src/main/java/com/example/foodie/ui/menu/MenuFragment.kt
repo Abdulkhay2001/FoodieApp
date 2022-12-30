@@ -19,6 +19,7 @@ class MenuFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
 
     lateinit var model: MenuViewModel
+    private lateinit var sharedViewModel: SharedViewModel
 
     private val binding get() = _binding!!
 
@@ -64,6 +65,8 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
         binding.rvMenu.layoutManager = GridLayoutManager(requireContext(), 2)
 
         model = ViewModelProvider(this)[MenuViewModel::class.java]
@@ -75,9 +78,12 @@ class MenuFragment : Fragment() {
             binding.rvMenu.adapter = MenuAdapter(menu, callback)
         }
 
+        sharedViewModel.onFavoriteUpdate.observe(viewLifecycleOwner) {
+            val event = it.getContentIdNotHandled()
+                model.initArgs(category!!)
+        }
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -42,16 +42,13 @@ class MenuAdapter(val menu: List<MenuModel>, val callback: RecyclerViewItemClick
 
             favorite.setOnClickListener {
                 callback.onFavoriteClick(item)
-
             }
 
-            if(item.favorite){
+            if (item.favorite) {
                 favorite.setImageResource(R.drawable.ic_round_favorite_red_24)
-            } else{
+            } else {
                 favorite.setImageResource(R.drawable.ic_round_favorite_24)
             }
-
-
 
         }
 
