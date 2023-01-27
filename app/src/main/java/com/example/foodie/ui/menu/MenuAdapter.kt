@@ -13,7 +13,7 @@ import com.example.foodie.databinding.MenuItemBinding
 import com.example.foodie.model.MenuModel
 import com.example.foodie.model.callback.RecyclerViewItemClick
 
-class MenuAdapter(val menu: List<MenuModel>, val callback: RecyclerViewItemClick) :
+class MenuAdapter(val menu: List<MenuModel>, val callback: RecyclerViewItemClick, val userFavoritesList: MutableList<Int>) :
     RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
@@ -44,7 +44,7 @@ class MenuAdapter(val menu: List<MenuModel>, val callback: RecyclerViewItemClick
                 callback.onFavoriteClick(item)
             }
 
-            if (item.favorite) {
+            if (userFavoritesList.contains(item.id)) {
                 favorite.setImageResource(R.drawable.ic_round_favorite_red_24)
             } else {
                 favorite.setImageResource(R.drawable.ic_round_favorite_24)

@@ -20,8 +20,8 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     private val _showDialog = MutableLiveData<String>()
     val showDialog: LiveData<String> = _showDialog
 
-    private val _open = MutableLiveData<Unit>()
-    val open: LiveData<Unit> = _open
+    private val _open = MutableLiveData<UserModel>()
+    val open: LiveData<UserModel> = _open
 
     init {
         //todo добавть обновление списка после авторизации
@@ -44,10 +44,9 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
             }
         }
         if (user != null) {
-            _open.postValue(Unit)
+            _open.postValue(user!!)
         } else {
             _showDialog.postValue("Invalid username or password")
-
         }
     }
 

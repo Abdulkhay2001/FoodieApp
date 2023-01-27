@@ -148,9 +148,8 @@
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
-
-
                 </com.google.android.material.card.MaterialCardView>
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buy_btb"

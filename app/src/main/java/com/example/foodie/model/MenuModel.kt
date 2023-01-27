@@ -11,8 +11,6 @@ class MenuModel(
     @ColumnInfo
     val price: Int,
     @ColumnInfo
-    var favorite: Boolean,
-    @ColumnInfo
     val image: Int,
     @ColumnInfo
     val typesOfFood: String,

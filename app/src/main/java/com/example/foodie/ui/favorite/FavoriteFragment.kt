@@ -1,5 +1,6 @@
 package com.example.foodie.ui.favorite
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,9 +38,22 @@ class FavoriteFragment : Fragment() {
 
         override fun onFavoriteClick(item: Any) {
             if (item is MenuModel) {
-                item.favorite = item.favorite.not()
-                model.update(item)
-                sharedViewModel.onFavoriteBtnClick()
+                // TODO:
+
+                val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                    .getInt("user_id", -1)
+
+                val user = model.db.userDao().getUserById(userId)
+                if (user.favoriteList.contains(item.id)) {
+                    user.favoriteList.remove(item.id)
+                } else {
+                    user.favoriteList.add(item.id)
+                }
+
+                model.updateFavorites(user)
+//                item.favorite = item.favorite.not()
+                model.getFavorite()
+               sharedViewModel.onFavoriteBtnClick()
             }
         }
     }
@@ -75,6 +89,8 @@ class FavoriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         model.getFavorite()
+        //todo обновление favorites
+
     }
 
     override fun onDestroyView() {

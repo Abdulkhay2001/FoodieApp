@@ -1,5 +1,6 @@
 package com.example.foodie.ui.menu
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class MenuFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
 
     lateinit var model: MenuViewModel
+
     private lateinit var sharedViewModel: SharedViewModel
 
     private val binding get() = _binding!!
@@ -37,10 +39,20 @@ class MenuFragment : Fragment() {
 
         override fun onFavoriteClick(item: Any) {
             if (item is MenuModel) {
-                item.favorite = item.favorite.not()
+//                item.favorite = item.favorite.not()
                 model.update(item, category ?: 1)
+                val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                    .getInt("user_id", -1)
 
+                val user = model.db.userDao().getUserById(userId)
+                if (user.favoriteList.contains(item.id)) {
+                    user.favoriteList.remove(item.id)
+                } else {
+                    user.favoriteList.add(item.id)
+                }
+                model.updateFavorites(user)
             }
+
         }
     }
 
@@ -75,14 +87,16 @@ class MenuFragment : Fragment() {
         model.initArgs(category ?: 1)
 
         model.allMenu.observe(viewLifecycleOwner) { menu ->
-            binding.rvMenu.adapter = MenuAdapter(menu, callback)
+            val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                .getInt("user_id", -1)
+            val user = model.db.userDao().getUserById(userId)
+
+            binding.rvMenu.adapter = MenuAdapter(menu, callback, user.favoriteList)
         }
 
         sharedViewModel.onFavoriteUpdate.observe(viewLifecycleOwner) {
-            val event = it.getContentIdNotHandled()
                 model.initArgs(category!!)
         }
-
     }
 
     override fun onDestroyView() {

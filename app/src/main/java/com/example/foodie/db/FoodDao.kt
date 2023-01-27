@@ -17,9 +17,6 @@ interface FoodDao {
     @Query("SELECT * FROM food where typesOfFood in ('3')")
     fun getSnacksMenu(): List<MenuModel>
 
-    @Query("SELECT * FROM FOOD WHERE favorite = 1")
-    fun getFavorites(): List<MenuModel>
-
     @Update
     fun update(f: MenuModel)
 

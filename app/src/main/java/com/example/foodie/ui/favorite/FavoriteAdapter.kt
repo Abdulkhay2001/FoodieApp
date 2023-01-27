@@ -22,7 +22,7 @@ class FavoriteAdapter(val favorite: List<MenuModel>, val callback: RecyclerViewI
         holder.initContent(favorite[position])
 
         holder.name.text = favorite[position].name
-        holder.name.text = "${favorite[position].price} somon"
+        holder.price.text = "${favorite[position].price} somon"
 
     }
 
@@ -43,12 +43,7 @@ class FavoriteAdapter(val favorite: List<MenuModel>, val callback: RecyclerViewI
             imgFavorite.setOnClickListener {
                 callback.onFavoriteClick(item)
             }
-
-            if (item.favorite) {
                 imgFavorite.setImageResource(R.drawable.ic_round_favorite_red_24)
-            } else {
-                imgFavorite.setImageResource(R.drawable.ic_round_favorite_24)
-            }
 
         }
     }

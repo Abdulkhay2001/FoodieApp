@@ -13,7 +13,9 @@ class UserModel(
     @ColumnInfo
     val password: String,
     @ColumnInfo
-    val remember: Boolean
+    val remember: Boolean,
+    @ColumnInfo
+    val favoriteList: MutableList<Int> = mutableListOf()
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

@@ -4,13 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.foodie.R
+import com.example.foodie.model.MutableListConverter
 import com.example.foodie.model.MenuModel
 import com.example.foodie.model.UserModel
-import java.util.concurrent.Executors
 
 @Database(entities = [MenuModel::class, UserModel::class], version = 1)
+@TypeConverters(MutableListConverter::class)
 abstract class DataBase : RoomDatabase() {
     abstract fun menuDao(): FoodDao
     abstract fun userDao(): UserDao

@@ -1,5 +1,6 @@
 package com.example.foodie.ui.signInUp.signIn
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,7 +36,6 @@ class SignInFragment : Fragment() {
 
             model.send(binding.emailEditText.text.toString(), binding.passEditText.text.toString())
 
-
         }
         model.showDialog.observe(viewLifecycleOwner) {
             MaterialAlertDialogBuilder(requireActivity())
@@ -46,6 +46,7 @@ class SignInFragment : Fragment() {
         }
 
         model.open.observe(viewLifecycleOwner) {
+            requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putInt("user_id", it.id).apply()
             requireActivity().run {
                 startActivity(Intent(this, RootActivity::class.java))
                 finish()
