@@ -8,13 +8,15 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.foodie.model.MutableListConverter
 import com.example.foodie.model.MenuModel
+import com.example.foodie.model.ShoppingCartModel
 import com.example.foodie.model.UserModel
 
-@Database(entities = [MenuModel::class, UserModel::class], version = 1)
+@Database(entities = [MenuModel::class, UserModel::class, ShoppingCartModel::class], version = 1)
 @TypeConverters(MutableListConverter::class)
 abstract class DataBase : RoomDatabase() {
     abstract fun menuDao(): FoodDao
     abstract fun userDao(): UserDao
+    abstract fun shoppingCartDao(): ShoppingCartDao
 
     companion object {
         @Volatile

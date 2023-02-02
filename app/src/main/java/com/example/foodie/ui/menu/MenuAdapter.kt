@@ -1,5 +1,6 @@
 package com.example.foodie.ui.menu
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.ScrollCaptureCallback
@@ -22,11 +23,12 @@ class MenuAdapter(val menu: List<MenuModel>, val callback: RecyclerViewItemClick
         return MenuViewHolder(inflater)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         holder.initContent(menu[position])
 
         holder.name.text = menu[position].name
-        holder.price.text = "${menu[position].price} somon"
+        holder.price.text = "${menu[position].price} TJS"
 
 
     }

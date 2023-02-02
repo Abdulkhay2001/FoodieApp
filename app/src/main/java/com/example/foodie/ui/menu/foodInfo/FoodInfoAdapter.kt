@@ -1,5 +1,6 @@
 package com.example.foodie.ui.menu.foodInfo
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,26 +11,29 @@ import com.example.foodie.R
 import com.example.foodie.model.MenuModel
 import com.example.foodie.model.callback.RecyclerViewItemClick
 
-class FoodInfoAdapter(val food: List<MenuModel>, val callback: RecyclerViewItemClick): RecyclerView.Adapter<FoodInfoAdapter.ViewHolder>() {
+class FoodInfoAdapter(val food: List<MenuModel>, val callback: RecyclerViewItemClick) :
+    RecyclerView.Adapter<FoodInfoAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.food_info_item, parent, false)
+        val inflater =
+            LayoutInflater.from(parent.context).inflate(R.layout.food_info_item, parent, false)
         return ViewHolder(inflater)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.img.setImageResource(R.drawable.food_image)
         holder.name.text = food[position].name
-        holder.price.text =food[position].price.toString()
+        holder.price.text = "${food[position].price} TJS"
 
         holder.initContent(food[position])
     }
 
     override fun getItemCount(): Int = food.size
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun initContent(item: MenuModel){
+        fun initContent(item: MenuModel) {
             itemView.rootView.setOnClickListener {
                 callback.onItemClickCallback(item)
             }

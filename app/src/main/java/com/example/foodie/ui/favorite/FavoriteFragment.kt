@@ -38,7 +38,6 @@ class FavoriteFragment : Fragment() {
 
         override fun onFavoriteClick(item: Any) {
             if (item is MenuModel) {
-                // TODO:
 
                 val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
                     .getInt("user_id", -1)
@@ -51,7 +50,6 @@ class FavoriteFragment : Fragment() {
                 }
 
                 model.updateFavorites(user)
-//                item.favorite = item.favorite.not()
                 model.getFavorite()
                sharedViewModel.onFavoriteBtnClick()
             }
@@ -89,7 +87,6 @@ class FavoriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         model.getFavorite()
-        //todo обновление favorites
 
     }
 

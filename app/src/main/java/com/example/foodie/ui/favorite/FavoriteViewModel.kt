@@ -22,8 +22,6 @@ class FavoriteViewModel(val app: Application) : AndroidViewModel(app) {
 
     init {
         viewModelScope.launch {
-            // TODO: 1. get current user
-
             getFavorite()
         }
     }

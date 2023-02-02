@@ -95,8 +95,10 @@ class MenuFragment : Fragment() {
         }
 
         sharedViewModel.onFavoriteUpdate.observe(viewLifecycleOwner) {
-                model.initArgs(category!!)
+            model.initArgs(category!!)
         }
+
+
     }
 
     override fun onDestroyView() {

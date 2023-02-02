@@ -1,5 +1,6 @@
 package com.example.foodie.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,9 +16,13 @@ class SplashActivity : AppCompatActivity() {
 
         lifecycleScope.launch{
             delay(3000)
-            val intent = Intent(this@SplashActivity, SignInUpActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (getSharedPreferences("prefs", Context.MODE_PRIVATE).getInt("user_id", -1) == -1){
+                val intent = Intent(this@SplashActivity, SignInUpActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                startActivity(Intent(this@SplashActivity, RootActivity::class.java))
+            }
         }
 
     }

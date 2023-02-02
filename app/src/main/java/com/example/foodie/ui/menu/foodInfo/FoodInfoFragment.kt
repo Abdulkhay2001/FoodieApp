@@ -1,10 +1,13 @@
 package com.example.foodie.ui.menu.foodInfo
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,8 +20,8 @@ import com.example.foodie.databinding.FragmentFoodInfoBinding
 import com.example.foodie.model.MenuModel
 import com.example.foodie.model.callback.RecyclerViewItemClick
 import com.example.foodie.ui.activity.OrderedActivity
-import com.example.foodie.ui.activity.RootActivity
-import com.example.foodie.ui.menu.MenuFragment
+import com.example.foodie.ui.menu.SharedViewModel
+import com.example.foodie.ui.shoppingCart.ShoppingCartActivity
 
 class FoodInfoFragment : Fragment() {
 
@@ -28,9 +31,11 @@ class FoodInfoFragment : Fragment() {
 
     lateinit var model: FoodInfoViewModel
 
-    private val callback = object : RecyclerViewItemClick{
+    private lateinit var sharedViewModel: SharedViewModel
+
+    private val callback = object : RecyclerViewItemClick {
         override fun onItemClickCallback(item: Any) {
-            if (item is MenuModel){
+            if (item is MenuModel) {
                 findNavController().navigate(
                     R.id.foodInfoFragment,
                     FoodInfoFragmentArgs(item.id).toBundle()
@@ -53,6 +58,7 @@ class FoodInfoFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -74,6 +80,7 @@ class FoodInfoFragment : Fragment() {
             var inc = binding.tvCount.text.toString().toInt()
             inc++
             binding.tvCount.text = inc.toString()
+            binding.tvInfoTotal.text = "Total: ${model.menu.value!!.price * inc} TJS"
         }
 
         binding.tvMinus.setOnClickListener {
@@ -82,6 +89,7 @@ class FoodInfoFragment : Fragment() {
                 dec--
             }
             binding.tvCount.text = dec.toString()
+            binding.tvInfoTotal.text = "Total: ${model.menu.value!!.price * dec} TJS"
         }
 
         binding.icToolbarFoodInfo.back.isVisible = true
@@ -97,19 +105,44 @@ class FoodInfoFragment : Fragment() {
         model.menu.observe(viewLifecycleOwner) {
             binding.tvInfoName.text = it.name
 
-            binding.tvInfoPrice.text = "${it.price} somon"
+            binding.tvInfoPrice.text = "${it.price} TJS"
 
             binding.tvInfoDescription.text = it.desc
 
-            binding.tvInfoTotal.text = "Total: ${it.price}"
+            binding.tvInfoTotal.text = "Total: ${it.price} TJS"
         }
 
         binding.buyBtb.setOnClickListener {
 
 
-                startActivity(Intent(requireContext(), OrderedActivity::class.java))
+            startActivity(Intent(requireContext(), OrderedActivity::class.java))
 
 
+        }
+
+        binding.btnAddToCart.setOnClickListener {
+
+            val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                .getInt("user_id", -1)
+
+            val count = binding.tvCount.text.toString().toInt()
+
+            val sh = model.shoppingCart.value!!.firstOrNull { it.menuId==args.idFood }
+
+            if (model.db.shoppingCartDao().CheckShoppingCart(model.menu.value!!.id, userId) == null){
+                model.insert(userId, model.menu.value!!.id, count)
+            }else{
+                sh!!.count += 1
+                model.update(sh!!)
+            }
+
+            Toast.makeText(requireContext(),"Added to shopping cart", Toast.LENGTH_SHORT).show()
+
+        }
+
+        binding.icToolbarFoodInfo.imgShoppingCart.setOnClickListener {
+            val intent = Intent(requireContext(), ShoppingCartActivity::class.java)
+            startActivity(intent)
         }
 
 
