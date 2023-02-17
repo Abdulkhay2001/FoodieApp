@@ -16,7 +16,6 @@ class FavoriteViewModel(val app: Application) : AndroidViewModel(app) {
 
     val db: DataBase = DataBase.getInstance(app)
 
-
     private val _favorite: MutableLiveData<List<MenuModel>> = MutableLiveData()
     val favorite: LiveData<List<MenuModel>> = _favorite
 

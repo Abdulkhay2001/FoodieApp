@@ -31,7 +31,6 @@ class SignInFragment : Fragment() {
 
         model = ViewModelProvider(this)[SignInViewModel::class.java]
 
-        //todo добавить проверку login and password
         binding.signInBtn.setOnClickListener {
 
             model.send(binding.emailEditText.text.toString(), binding.passEditText.text.toString())

@@ -141,7 +141,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 2",
+                        "some snacks 3",
                         42,
                         R.drawable.food_image,
                         "3",
@@ -150,7 +150,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 3",
+                        "some snacks 4",
                         65,
                         R.drawable.food_image,
                         "3",
@@ -159,7 +159,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 4",
+                        "some snacks 5",
                         13,
                         R.drawable.food_image,
                         "3",
@@ -168,7 +168,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 5",
+                        "some snacks 6",
                         27,
                         R.drawable.food_image,
                         "3",
@@ -177,7 +177,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 6",
+                        "some snacks 7",
                         39,
                         R.drawable.food_image,
                         "3",
@@ -186,7 +186,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 7",
+                        "some snacks 8",
                         52,
                         R.drawable.food_image,
                         "3",
@@ -195,7 +195,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 db.menuDao().insertMenu(
                     MenuModel(
-                        "some snacks 8",
+                        "some snacks 9",
                         35,
                         R.drawable.food_image,
                         "3",

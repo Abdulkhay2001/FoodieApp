@@ -21,7 +21,7 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
 
     fun send(name: String, mail: String, pass: String) {
         viewModelScope.launch {
-            db.userDao().insertUser(UserModel(name, mail, pass, false))
+            db.userDao().insertUser(UserModel(name, mail, pass))
         }
     }
 

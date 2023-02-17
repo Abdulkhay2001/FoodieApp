@@ -59,8 +59,6 @@
 
             android:layout_margin="10dp"/>
 
-        <!--todo исправить дизайн-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

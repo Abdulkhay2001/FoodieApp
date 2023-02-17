@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.foodie.model.MenuModel
 import com.example.foodie.model.ShoppingCartModel
 
 @Dao
@@ -18,7 +17,10 @@ interface ShoppingCartDao {
     fun insertShoppingCart(var1: ShoppingCartModel)
 
     @Query("SELECT * FROM shoppingCart WHERE menuId = :menuId AND userId = :userId")
-    fun CheckShoppingCart(menuId: Int, userId: Int): ShoppingCartModel?
+    fun checkShoppingCart(menuId: Int, userId: Int): ShoppingCartModel?
+
+    @Query("DELETE FROM shoppingCart")
+    fun deleteAllShoppingCart()
 
     @Update
     fun update(f: ShoppingCartModel)

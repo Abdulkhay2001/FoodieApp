@@ -2,22 +2,23 @@ package com.example.foodie.ui.shoppingCart
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import com.example.foodie.R
 import com.example.foodie.databinding.ActivityShoppingCartBinding
 import com.example.foodie.databinding.ShoppingCartItemBinding
-import com.example.foodie.ui.favorite.FavoriteViewModel
-import com.example.foodie.ui.menu.SharedViewModel
+import com.example.foodie.ui.activity.OrderedActivity
 
 class ShoppingCartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityShoppingCartBinding
 
     private lateinit var model: ShoppingCartViewModel
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,9 @@ class ShoppingCartActivity : AppCompatActivity() {
             finish()
         }
 
+        var allPrice = 0
+
+
         // list menu id:count
         model.shoppingCart.observe(this) {
             it.forEach { sh ->
@@ -50,30 +54,72 @@ class ShoppingCartActivity : AppCompatActivity() {
                 menuView.tvCount.text = sh.count.toString()
 
                 menuView.tvPlus.setOnClickListener {
-                    var c = menuView.tvCount.text.toString().toInt() + 1
+                    var c = sh.count + 1
                     menuView.tvCount.text = (c).toString()
                     menuView.tvPriceShoppingCart.text = "${price * c} TJS"
+                    sh.count = c
+                    model.update(sh)
+                    binding.btnOrdered.text = "ORDER FOR ${model.price()} TJS"
                 }
 
                 menuView.tvMinus.setOnClickListener {
                     if (menuView.tvCount.text.toString().toInt() > 1) {
-                        var c = menuView.tvCount.text.toString().toInt() - 1
+                        var c = sh.count - 1
                         menuView.tvCount.text = (c).toString()
                         menuView.tvPriceShoppingCart.text = "${price * c} TJS"
+                        sh.count = c
+                        model.update(sh)
+                        binding.btnOrdered.text = "ORDER FOR ${model.price()} TJS"
 
                     } else {
                         val userId = this.getSharedPreferences("prefs", Context.MODE_PRIVATE)
                             .getInt("user_id", -1)
                         binding.llShoppingCart.removeAllViews()
                         model.delete(sh, userId)
+                        binding.btnOrdered.text = "ORDER FOR ${model.price()} TJS"
+
+                        if (model.db.shoppingCartDao().getShoppingCart(userId).isEmpty()){
+                            binding.tvShoppingCartIsEmpty.visibility = View.VISIBLE
+                            binding.llShoppingCart.visibility = View.GONE
+                            binding.llOrder.visibility = View.GONE
+                        }else{
+                            binding.tvShoppingCartIsEmpty.visibility = View.GONE
+                            binding.llShoppingCart.visibility = View.VISIBLE
+                            binding.llOrder.visibility = View.VISIBLE
+                        }
                     }
                 }
+
+                allPrice += model.db.menuDao().getMenu(sh.menuId).price * sh.count
                 binding.llShoppingCart.addView(menuView.root)
+
+            }
+
+            binding.btnOrdered.text = "ORDER FOR ${model.price()} TJS"
+
+
+            binding.btnOrdered.setOnClickListener {
+                startActivity(Intent(this, OrderedActivity::class.java))
+                overridePendingTransition(R.anim.slidein, R.anim.slideout)
+                binding.llShoppingCart.removeAllViews()
+                model.deleteAll()
+
             }
 
         }
-        // list forEach {
-//        menuView.tvCount = count.toString
-//        menuView.name = menu.name
+
+
+        val userId = this.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+            .getInt("user_id", -1)
+        if (model.db.shoppingCartDao().getShoppingCart(userId).isEmpty()){
+            binding.tvShoppingCartIsEmpty.visibility = View.VISIBLE
+            binding.llShoppingCart.visibility = View.GONE
+            binding.llOrder.visibility = View.GONE
+        }else{
+            binding.tvShoppingCartIsEmpty.visibility = View.GONE
+            binding.llShoppingCart.visibility = View.VISIBLE
+            binding.llOrder.visibility = View.VISIBLE
+        }
+
     }
 }

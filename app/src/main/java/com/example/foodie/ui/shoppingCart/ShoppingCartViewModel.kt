@@ -14,22 +14,37 @@ class ShoppingCartViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _shoppingCart: MutableLiveData<List<ShoppingCartModel>> = MutableLiveData()
     val shoppingCart: LiveData<List<ShoppingCartModel>> = _shoppingCart
-
+    val userId = app.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        .getInt("user_id", -1)
 
     init {
-        val userId = app.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-            .getInt("user_id", -1)
         getShoppingCart(userId)
     }
 
-    fun getShoppingCart(userId: Int) {
+    private fun getShoppingCart(userId: Int) {
         _shoppingCart.postValue(db.shoppingCartDao().getShoppingCart(userId))
     }
 
-    fun delete(shoppingCartModel: ShoppingCartModel, userId: Int){
+    fun update(shoppingCartModel: ShoppingCartModel) {
+        db.shoppingCartDao().update(shoppingCartModel)
+    }
+
+    fun delete(shoppingCartModel: ShoppingCartModel, userId: Int) {
         db.shoppingCartDao().delete(shoppingCartModel)
         _shoppingCart.postValue(db.shoppingCartDao().getShoppingCart(userId))
 
+    }
+
+    fun deleteAll(){
+        db.shoppingCartDao().deleteAllShoppingCart()
+    }
+
+    fun price(): Int {
+        var result =0
+        shoppingCart.value!!.forEach {
+            result += db.menuDao().getMenu(it.menuId).price * it.count
+        }
+        return result
     }
 
 

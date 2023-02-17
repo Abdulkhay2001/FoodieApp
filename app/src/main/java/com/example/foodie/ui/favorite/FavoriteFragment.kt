@@ -1,6 +1,7 @@
 package com.example.foodie.ui.favorite
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.example.foodie.model.callback.RecyclerViewItemClick
 import com.example.foodie.ui.menu.MenuViewModel
 import com.example.foodie.ui.menu.SharedViewModel
 import com.example.foodie.ui.menu.foodInfo.FoodInfoFragmentArgs
+import com.example.foodie.ui.shoppingCart.ShoppingCartActivity
 
 class FavoriteFragment : Fragment() {
 
@@ -81,6 +83,10 @@ class FavoriteFragment : Fragment() {
         }
 
         binding.icToolbar.tvRoot.text = "Favorite"
+
+        binding.icToolbar.imgShoppingCart.setOnClickListener {
+            startActivity(Intent(requireContext(), ShoppingCartActivity::class.java))
+        }
 
     }
 

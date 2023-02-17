@@ -15,7 +15,29 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.foodie.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_helpFragment"
+            app:destination="@id/helpFragment"
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
+        <action
+            android:id="@+id/action_navigation_profile_to_profileInformationFragment"
+            app:destination="@id/profileInformationFragment"
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
+        <action
+            android:id="@+id/action_navigation_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_menu"
@@ -25,8 +47,10 @@
         <action
             android:id="@+id/action_navigation_menu_to_foodInfoFragment"
             app:destination="@id/foodInfoFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
     </fragment>
 
     <fragment
@@ -43,5 +67,20 @@
             android:name="idFood"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.foodie.ui.profile.help.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/profileInformationFragment"
+        android:name="com.example.foodie.ui.profile.profileInformation.ProfileInformationFragment"
+        android:label="fragment_profile_information"
+        tools:layout="@layout/fragment_profile_information" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.foodie.ui.profile.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

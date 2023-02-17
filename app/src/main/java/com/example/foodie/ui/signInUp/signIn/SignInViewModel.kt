@@ -24,11 +24,10 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     val open: LiveData<UserModel> = _open
 
     init {
-        //todo добавть обновление списка после авторизации
         viewModelScope.launch {
             var tmp = db.userDao().getAllUsers()
             if (tmp.isEmpty()){
-                db.userDao().insertUser(UserModel("Abdulhay", "abdul", "abdul", false))
+                db.userDao().insertUser(UserModel("Abdulhay", "abdul", "abdul"))
                 tmp = db.userDao().getAllUsers()
             }
             _allUser.postValue(tmp)

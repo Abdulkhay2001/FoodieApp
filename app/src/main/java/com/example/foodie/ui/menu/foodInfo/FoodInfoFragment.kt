@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Transition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -117,7 +118,6 @@ class FoodInfoFragment : Fragment() {
 
             startActivity(Intent(requireContext(), OrderedActivity::class.java))
 
-
         }
 
         binding.btnAddToCart.setOnClickListener {
@@ -129,7 +129,7 @@ class FoodInfoFragment : Fragment() {
 
             val sh = model.shoppingCart.value!!.firstOrNull { it.menuId==args.idFood }
 
-            if (model.db.shoppingCartDao().CheckShoppingCart(model.menu.value!!.id, userId) == null){
+            if (model.db.shoppingCartDao().checkShoppingCart(model.menu.value!!.id, userId) == null){
                 model.insert(userId, model.menu.value!!.id, count)
             }else{
                 sh!!.count += 1
@@ -143,9 +143,12 @@ class FoodInfoFragment : Fragment() {
         binding.icToolbarFoodInfo.imgShoppingCart.setOnClickListener {
             val intent = Intent(requireContext(), ShoppingCartActivity::class.java)
             startActivity(intent)
+
         }
 
 
     }
+
+
 
 }

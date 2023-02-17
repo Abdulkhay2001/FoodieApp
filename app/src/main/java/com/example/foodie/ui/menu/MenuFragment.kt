@@ -39,7 +39,6 @@ class MenuFragment : Fragment() {
 
         override fun onFavoriteClick(item: Any) {
             if (item is MenuModel) {
-//                item.favorite = item.favorite.not()
                 model.update(item, category ?: 1)
                 val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
                     .getInt("user_id", -1)
@@ -52,7 +51,6 @@ class MenuFragment : Fragment() {
                 }
                 model.updateFavorites(user)
             }
-
         }
     }
 

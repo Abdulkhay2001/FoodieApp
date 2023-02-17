@@ -19,9 +19,12 @@ class SplashActivity : AppCompatActivity() {
             if (getSharedPreferences("prefs", Context.MODE_PRIVATE).getInt("user_id", -1) == -1){
                 val intent = Intent(this@SplashActivity, SignInUpActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slidein, R.anim.slideout)
                 finish()
             }else{
                 startActivity(Intent(this@SplashActivity, RootActivity::class.java))
+                overridePendingTransition(R.anim.slidein, R.anim.slideout)
+
             }
         }
 

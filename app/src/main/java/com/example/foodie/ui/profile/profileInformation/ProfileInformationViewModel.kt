@@ -1,4 +1,4 @@
-package com.example.foodie.ui.profile
+package com.example.foodie.ui.profile.profileInformation
 
 import android.app.Application
 import android.content.Context
@@ -10,7 +10,7 @@ import com.example.foodie.db.DataBase
 import com.example.foodie.model.UserModel
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(val app: Application) : AndroidViewModel(app) {
+class ProfileInformationViewModel(val app: Application): AndroidViewModel(app) {
 
     val db: DataBase = DataBase.getInstance(app)
 
@@ -23,12 +23,11 @@ class ProfileViewModel(val app: Application) : AndroidViewModel(app) {
         }
     }
 
-   fun getUser(){
-       val userId = app.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-           .getInt("user_id", -1)
-       val user = db.userDao().getUserById(userId)
-       _user.postValue(user)
-   }
-
+    fun getUser(){
+        val userId = app.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+            .getInt("user_id", -1)
+        val user = db.userDao().getUserById(userId)
+        _user.postValue(user)
+    }
 
 }

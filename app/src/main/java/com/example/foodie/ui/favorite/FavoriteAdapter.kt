@@ -1,5 +1,6 @@
 package com.example.foodie.ui.favorite
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.example.foodie.R
 import com.example.foodie.model.MenuModel
 import com.example.foodie.model.callback.RecyclerViewItemClick
 
-class FavoriteAdapter(val favorite: List<MenuModel>, val callback: RecyclerViewItemClick) :
+class FavoriteAdapter(private val favorite: List<MenuModel>, val callback: RecyclerViewItemClick) :
     RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         val inflater =
@@ -18,11 +19,11 @@ class FavoriteAdapter(val favorite: List<MenuModel>, val callback: RecyclerViewI
         return FavoriteViewHolder(inflater)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         holder.initContent(favorite[position])
-
         holder.name.text = favorite[position].name
-        holder.price.text = "${favorite[position].price} somon"
+        holder.price.text = "${favorite[position].price} TJS"
 
     }
 
@@ -31,7 +32,7 @@ class FavoriteAdapter(val favorite: List<MenuModel>, val callback: RecyclerViewI
     inner class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = itemView.findViewById(R.id.tv_name_favorite)
         val price: TextView = itemView.findViewById(R.id.tv_price_favorite)
-        val imgFavorite: ImageView = itemView.findViewById(R.id.img_favorite)
+        private val imgFavorite: ImageView = itemView.findViewById(R.id.img_favorite)
 
 
         fun initContent(item: MenuModel) {

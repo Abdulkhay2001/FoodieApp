@@ -27,6 +27,7 @@ class OrderedActivity : AppCompatActivity() {
         binding.btnOrdered.setOnClickListener{
 
             startActivity(Intent(this, RootActivity::class.java))
+            overridePendingTransition(R.anim.slidein, R.anim.slideout)
 
         }
 
