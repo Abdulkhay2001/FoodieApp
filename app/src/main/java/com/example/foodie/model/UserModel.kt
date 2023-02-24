@@ -11,7 +11,7 @@ class UserModel(
     @ColumnInfo
     val email: String,
     @ColumnInfo
-    val password: String,
+    var password: String,
     @ColumnInfo
     val favoriteList: MutableList<Int> = mutableListOf()
 ) {

@@ -32,10 +32,9 @@ class SignInFragment : Fragment() {
         model = ViewModelProvider(this)[SignInViewModel::class.java]
 
         binding.signInBtn.setOnClickListener {
-
             model.send(binding.emailEditText.text.toString(), binding.passEditText.text.toString())
-
         }
+
         model.showDialog.observe(viewLifecycleOwner) {
             MaterialAlertDialogBuilder(requireActivity())
                 .setTitle(getString(R.string.app_name))

@@ -25,6 +25,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_round_account_circle_24"
             app:tint="#adb2b4" />
+
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textview.MaterialTextView

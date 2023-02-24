@@ -81,6 +81,40 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.foodie.ui.profile.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_oldPasswordFragment"
+            app:destination="@id/oldPasswordFragment"
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
+    </fragment>
+    <fragment
+        android:id="@+id/oldPasswordFragment"
+        android:name="com.example.foodie.ui.profile.settings.password.OldPasswordFragment"
+        android:label="fragment_old_password"
+        tools:layout="@layout/fragment_old_password" >
+        <action
+            android:id="@+id/action_oldPasswordFragment_to_chPasswordFragment"
+            app:destination="@id/chPasswordFragment"
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
+    </fragment>
+    <fragment
+        android:id="@+id/chPasswordFragment"
+        android:name="com.example.foodie.ui.profile.settings.password.ChPasswordFragment"
+        android:label="fragment_ch_password"
+        tools:layout="@layout/fragment_ch_password" >
+        <action
+            android:id="@+id/action_chPasswordFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/slidein"
+            app:exitAnim="@anim/slideout"
+            app:popEnterAnim="@anim/slidein"
+            app:popExitAnim="@anim/slideout" />
+    </fragment>
 
 </navigation>

@@ -17,7 +17,6 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     lateinit var model: ProfileViewModel
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
