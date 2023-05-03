@@ -40,7 +40,6 @@ class ChPasswordFragment : Fragment() {
         binding.icNewPass.tvRoot.text = "Change password"
 
         binding.btnNewPass.setOnClickListener {
-
             if (binding.newPassEditText.text.toString() == binding.newPassEditText2.text.toString()){
                 model.user.value!!.password = binding.newPassEditText.text.toString()
                 model.update(model.user.value!!)

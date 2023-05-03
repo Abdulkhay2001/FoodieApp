@@ -11,8 +11,6 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
 
-
-
     <item
         android:id="@+id/navigation_menu"
         android:icon="@drawable/ic_round_restaurant_menu_24"

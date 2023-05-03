@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/ll_help"
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.profile.help.HelpFragment">
+     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_help"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.profile.help.HelpFragment">
 
     <include
         android:id="@+id/ic_help"
         layout="@layout/tool_bar" />
 
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
 
 
 
-
-
-</LinearLayout>

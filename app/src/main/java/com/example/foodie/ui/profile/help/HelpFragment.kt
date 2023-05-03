@@ -1,15 +1,13 @@
 package com.example.foodie.ui.profile.help
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.foodie.R
 import com.example.foodie.databinding.FragmentHelpBinding
-import com.example.foodie.databinding.FragmentSettingsBinding
 import com.example.foodie.databinding.HelpItemBinding
 
 class HelpFragment : Fragment() {
@@ -37,13 +35,37 @@ class HelpFragment : Fragment() {
         binding.icHelp.back.isVisible = true
 
         val list: MutableList<HelpQuestion> = mutableListOf(
-            HelpQuestion("Когда вы доставляете?", "Доставка по Самаре осуществляется ежедневно. Вы сможете выбрать удобный промежуток времени: с 11:00 до 22:00. Мы позвоним заранее и уточним время доставки.", false),
+            HelpQuestion(
+                "Когда вы доставляете?",
+                "Доставка по Самаре осуществляется ежедневно. Вы сможете выбрать удобный промежуток времени: с 11:00 до 22:00. Мы позвоним заранее и уточним время доставки.",
+                false
+            ),
             HelpQuestion("Сколько стоит доставка?", "Доставка всегда бесплатна.", false),
-            HelpQuestion(" В какие города вы доставляете?", "Пока мы доставляем только по г. Самаре. Но в ближайшее время мы расширим список городов доставки. Подпишитесь на нас и Вы узнаете об открытии Кило Вкуса в Вашем городе первым!", false),
-            HelpQuestion("Могу ли я приостановить или изменить время доставки?", "Мы понимаем, что обстоятельства могут измениться в любой момент. Позвоните нам и мы найдем решение.", false),
-            HelpQuestion("Как упакована еда?", "Жидкие блюда упакованы в герметичные контейнеры, твердые в бумажные термопакеты, способные сохранить свежесть и вкусовые качества продуктов. Каждый заказ упакован в картонную коробку.", false),
-            HelpQuestion("Есть ли какие-то добавки?", "Никаких консервантов и усилителей вкуса.", false),
-            HelpQuestion("Какой срок хранения вашей еды?", "Замороженные блюда хранятся всего 30 дней, а готовые охлажденные 72 часа.\n" + "Короткие сроки хранения обусловлены полным отсутствием консервантов.", false)
+            HelpQuestion(
+                " В какие города вы доставляете?",
+                "Пока мы доставляем только по г. Самаре. Но в ближайшее время мы расширим список городов доставки. Подпишитесь на нас и Вы узнаете об открытии Кило Вкуса в Вашем городе первым!",
+                false
+            ),
+            HelpQuestion(
+                "Могу ли я приостановить или изменить время доставки?",
+                "Мы понимаем, что обстоятельства могут измениться в любой момент. Позвоните нам и мы найдем решение.",
+                false
+            ),
+            HelpQuestion(
+                "Как упакована еда?",
+                "Жидкие блюда упакованы в герметичные контейнеры, твердые в бумажные термопакеты, способные сохранить свежесть и вкусовые качества продуктов. Каждый заказ упакован в картонную коробку.",
+                false
+            ),
+            HelpQuestion(
+                "Есть ли какие-то добавки?",
+                "Никаких консервантов и усилителей вкуса.",
+                false
+            ),
+            HelpQuestion(
+                "Какой срок хранения вашей еды?",
+                "Замороженные блюда хранятся всего 30 дней, а готовые охлажденные 72 часа.\n" + "Короткие сроки хранения обусловлены полным отсутствием консервантов.",
+                false
+            )
         )
 
         list.forEach {
@@ -56,8 +78,6 @@ class HelpFragment : Fragment() {
             }
             binding.llHelp.addView(itemView.root)
         }
-
-
 
     }
 

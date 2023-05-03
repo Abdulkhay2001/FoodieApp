@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/ic_toolbar_food_info"
-        layout="@layout/tool_bar"/>
+        layout="@layout/tool_bar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -16,9 +16,7 @@
         android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_toolbar_food_info"
-
-        >
+        app:layout_constraintTop_toBottomOf="@+id/ic_toolbar_food_info">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -210,14 +208,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="20dp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:padding="20dp">
 
                     <TextView
-                        android:layout_weight="1"
                         android:id="@+id/tv_info_total"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Total : 120"
                         android:textColor="@color/black"
                         android:textSize="18sp"

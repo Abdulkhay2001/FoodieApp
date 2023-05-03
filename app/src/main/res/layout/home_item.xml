@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="180dp"
     android:layout_height="160dp"
-    android:layout_marginStart="10dp"
+    app:cardUseCompatPadding="true"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,9 +11,9 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/img_rec"
+            android:id="@+id/home_img"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
             android:src="@drawable/food_image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_name_rec"
+            android:id="@+id/tv_home_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -29,24 +29,24 @@
             android:lines="1"
             android:text="Some food"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_rec" />
+            app:layout_constraintTop_toBottomOf="@id/home_img" />
 
         <TextView
-            android:id="@+id/tv_price_rec"
+            android:id="@+id/tv_home_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="5dp"
             android:text="50 somon"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_rec" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_name" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:src="@drawable/ic_round_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_rec" />
+            app:layout_constraintTop_toBottomOf="@+id/home_img" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
