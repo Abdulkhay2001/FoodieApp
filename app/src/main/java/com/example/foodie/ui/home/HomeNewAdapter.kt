@@ -25,6 +25,7 @@ class HomeNewAdapter(private val new: List<MenuModel>, val callback: RecyclerVie
         holder.price.text = "${new[position].price} TJS"
 
         holder.initContent(new[position])
+        holder.initAdd(new[position])
     }
 
     override fun getItemCount(): Int = new.size
@@ -33,10 +34,17 @@ class HomeNewAdapter(private val new: List<MenuModel>, val callback: RecyclerVie
         val img = itemView.findViewById<ImageView>(R.id.home_img)
         val name = itemView.findViewById<TextView>(R.id.tv_home_name)
         val price = itemView.findViewById<TextView>(R.id.tv_home_price)
+        val plus = itemView.findViewById<ImageView>(R.id.img_home_add)
 
         fun initContent(item: MenuModel) {
             itemView.rootView.setOnClickListener {
                 callback.onItemClickCallback(item)
+            }
+        }
+
+        fun initAdd(item: MenuModel){
+            plus.setOnClickListener {
+                callback.onShoppingCartClick(item)
             }
         }
     }

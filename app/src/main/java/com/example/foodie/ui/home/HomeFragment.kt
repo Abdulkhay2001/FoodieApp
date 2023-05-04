@@ -1,10 +1,13 @@
 package com.example.foodie.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -34,6 +37,34 @@ class HomeFragment : Fragment() {
 
         override fun onFavoriteClick(item: Any) {
             TODO("Not yet implemented")
+        }
+
+        override fun onShoppingCartClick(item: Any) {
+            if (item is MenuModel) {
+                Log.d("TAG", "insert")
+//                model.update(item)
+                val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                    .getInt("user_id", -1)
+
+                val sh = model.shoppingCart.value!!.firstOrNull {
+                    it.menuId == item.id }
+
+
+                if (model.db.shoppingCartDao()
+                        .checkShoppingCart(item.id, userId) == null
+                ) {
+                    model.insert(userId, item.id, 1)
+
+                } else {
+                    sh!!.count += 1
+                    model.update(sh!!)
+                }
+
+                Toast.makeText(requireContext(), "Added to shopping cart", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+
         }
 
     }

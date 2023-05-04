@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodie.R
 import com.example.foodie.db.DataBase
 import com.example.foodie.model.MenuModel
+import com.example.foodie.model.ShoppingCartModel
 import com.example.foodie.model.UserModel
 import kotlinx.coroutines.launch
 
@@ -231,5 +232,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
         initArgs(category)
 
     }
+
+
 
 }

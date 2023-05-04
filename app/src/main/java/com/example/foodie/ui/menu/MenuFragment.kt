@@ -52,6 +52,10 @@ class MenuFragment : Fragment() {
                 model.updateFavorites(user)
             }
         }
+
+        override fun onShoppingCartClick(item: Any) {
+            TODO("Not yet implemented")
+        }
     }
 
     companion object {

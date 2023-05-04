@@ -56,6 +56,10 @@ class FavoriteFragment : Fragment() {
                sharedViewModel.onFavoriteBtnClick()
             }
         }
+
+        override fun onShoppingCartClick(item: Any) {
+            TODO("Not yet implemented")
+        }
     }
 
 

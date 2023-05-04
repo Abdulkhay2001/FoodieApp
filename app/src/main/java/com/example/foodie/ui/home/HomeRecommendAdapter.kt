@@ -27,6 +27,7 @@ class HomeRecommendAdapter(
         holder.price.text = "${recommend[position].price} TJS"
 
         holder.initContent(recommend[position])
+        holder.initAdd(recommend[position])
     }
 
     override fun getItemCount(): Int = recommend.size
@@ -39,9 +40,17 @@ class HomeRecommendAdapter(
             }
         }
 
+        fun initAdd(item: MenuModel){
+            plus.setOnClickListener {
+                callback.onShoppingCartClick(item)
+            }
+        }
+
         val img = itemView.findViewById<ImageView>(R.id.home_img)
         val name = itemView.findViewById<TextView>(R.id.tv_home_name)
         val price = itemView.findViewById<TextView>(R.id.tv_home_price)
+        val plus = itemView.findViewById<ImageView>(R.id.img_home_add)
+
     }
 
 }

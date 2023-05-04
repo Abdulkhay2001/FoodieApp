@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodie.R
 import com.example.foodie.model.MenuModel
+import com.example.foodie.model.ShoppingCartModel
 import com.example.foodie.model.callback.RecyclerViewItemClick
 
 class FoodInfoAdapter(val food: List<MenuModel>, val callback: RecyclerViewItemClick) :
@@ -27,6 +28,7 @@ class FoodInfoAdapter(val food: List<MenuModel>, val callback: RecyclerViewItemC
         holder.price.text = "${food[position].price} TJS"
 
         holder.initContent(food[position])
+        holder.initAdd(food[position])
     }
 
     override fun getItemCount(): Int = food.size
@@ -39,8 +41,15 @@ class FoodInfoAdapter(val food: List<MenuModel>, val callback: RecyclerViewItemC
             }
         }
 
+        fun initAdd(item: MenuModel){
+            plus.setOnClickListener {
+                callback.onShoppingCartClick(item)
+            }
+        }
+
         val img = itemView.findViewById<ImageView>(R.id.img_rec)
         val name = itemView.findViewById<TextView>(R.id.tv_name_rec)
         val price = itemView.findViewById<TextView>(R.id.tv_price_rec)
+        val plus = itemView.findViewById<ImageView>(R.id.img_add)
     }
 }

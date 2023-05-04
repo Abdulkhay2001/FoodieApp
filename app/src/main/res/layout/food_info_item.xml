@@ -49,6 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name_rec" />
 
         <ImageView
+            android:id="@+id/img_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

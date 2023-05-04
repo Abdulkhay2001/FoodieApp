@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.transition.Transition
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +20,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.foodie.R
 import com.example.foodie.databinding.FragmentFoodInfoBinding
 import com.example.foodie.model.MenuModel
+import com.example.foodie.model.ShoppingCartModel
 import com.example.foodie.model.callback.RecyclerViewItemClick
 import com.example.foodie.ui.activity.OrderedActivity
 import com.example.foodie.ui.menu.SharedViewModel
 import com.example.foodie.ui.shoppingCart.ShoppingCartActivity
+import kotlin.math.log
 
 class FoodInfoFragment : Fragment() {
 
@@ -48,6 +51,34 @@ class FoodInfoFragment : Fragment() {
             TODO("Not yet implemented")
         }
 
+        override fun onShoppingCartClick(item: Any) {
+            if (item is MenuModel) {
+                Log.d("TAG", "insert")
+//                model.update(item)
+                val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                    .getInt("user_id", -1)
+
+                val sh = model.shoppingCart.value!!.firstOrNull {
+                    it.menuId == item.id }
+
+
+                if (model.db.shoppingCartDao()
+                        .checkShoppingCart(item.id, userId) == null
+                ) {
+                    model.insert(userId, item.id, 1)
+
+                } else {
+                    sh!!.count += 1
+                    model.update(sh!!)
+                }
+
+                Toast.makeText(requireContext(), "Added to shopping cart", Toast.LENGTH_SHORT)
+                    .show()
+
+
+            }
+        }
+
     }
 
     override fun onCreateView(
@@ -71,11 +102,9 @@ class FoodInfoFragment : Fragment() {
             DividerItemDecoration.HORIZONTAL
         )
 
-
         model.allMenu.observe(viewLifecycleOwner, Observer { menu ->
             binding.rvInfoRecommended.adapter = FoodInfoAdapter(menu, callback)
         })
-
 
         binding.tvPlus.setOnClickListener {
             var inc = binding.tvCount.text.toString().toInt()
@@ -127,18 +156,22 @@ class FoodInfoFragment : Fragment() {
 
             val count = binding.tvCount.text.toString().toInt()
 
-            val sh = model.shoppingCart.value!!.firstOrNull { it.menuId==args.idFood }
+            val sh = model.shoppingCart.value!!.firstOrNull { it.menuId == args.idFood }
 
-            if (model.db.shoppingCartDao().checkShoppingCart(model.menu.value!!.id, userId) == null){
+            if (model.db.shoppingCartDao()
+                    .checkShoppingCart(model.menu.value!!.id, userId) == null
+            ) {
                 model.insert(userId, model.menu.value!!.id, count)
-            }else{
+            } else {
                 sh!!.count += 1
                 model.update(sh!!)
             }
 
-            Toast.makeText(requireContext(),"Added to shopping cart", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Added to shopping cart", Toast.LENGTH_SHORT).show()
 
         }
+
+
 
         binding.icToolbarFoodInfo.imgShoppingCart.setOnClickListener {
             val intent = Intent(requireContext(), ShoppingCartActivity::class.java)
@@ -148,7 +181,6 @@ class FoodInfoFragment : Fragment() {
 
 
     }
-
 
 
 }
