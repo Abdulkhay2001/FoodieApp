@@ -1,5 +1,6 @@
 package com.example.foodie.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -41,14 +42,13 @@ class HomeFragment : Fragment() {
 
         override fun onShoppingCartClick(item: Any) {
             if (item is MenuModel) {
-                Log.d("TAG", "insert")
-//                model.update(item)
+
                 val userId = requireContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
                     .getInt("user_id", -1)
 
                 val sh = model.shoppingCart.value!!.firstOrNull {
-                    it.menuId == item.id }
-
+                    it.menuId == item.id
+                }
 
                 if (model.db.shoppingCartDao()
                         .checkShoppingCart(item.id, userId) == null
@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
+        model =
             ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -83,20 +83,17 @@ class HomeFragment : Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        model = ViewModelProvider(this)[HomeViewModel::class.java]
+        model.allMenu.observe(viewLifecycleOwner) {menu ->
 
-        model.allMenu.observe(viewLifecycleOwner) {
-
-            binding.rvHomeRecommend.adapter = HomeRecommendAdapter(it, callback)
-            binding.rvHomePopular.adapter = HomeNewAdapter(it, callback)
-            binding.rvHomeNew.adapter = HomeNewAdapter(it, callback)
+            binding.rvHomeRecommend.adapter = HomeRecommendAdapter(menu, callback)
+            binding.rvHomePopular.adapter = HomeNewAdapter(menu, callback)
+            binding.rvHomeNew.adapter = HomeNewAdapter(menu, callback)
 
         }
-
-
 
         binding.icHome.tvRoot.text = "Home"
         binding.icHome.imgShoppingCart.setOnClickListener {

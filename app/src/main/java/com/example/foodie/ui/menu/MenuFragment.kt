@@ -100,7 +100,6 @@ class MenuFragment : Fragment() {
             model.initArgs(category!!)
         }
 
-
     }
 
     override fun onDestroyView() {
