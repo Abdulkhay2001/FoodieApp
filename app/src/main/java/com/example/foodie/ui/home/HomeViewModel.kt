@@ -214,7 +214,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun update(shoppingCartModel: ShoppingCartModel){
+    fun update(shoppingCartModel: ShoppingCartModel) {
         db.shoppingCartDao().update(shoppingCartModel)
     }
 
